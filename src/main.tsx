@@ -58,11 +58,11 @@ const ResetPassword= lazy(() =>
 const router = createBrowserRouter([
   {
 
-    path: "/",
-    element: <Navigate to="/login" />,
+    path: `${import.meta.env.VITE_BASE}`,
+    element: <Navigate to={`${import.meta.env.VITE_BASE}/login`} />,
   },
   {
-    path: "/login",
+    path: `${import.meta.env.VITE_BASE}/login`,
     element: <>
       <Suspense fallback={<Loader />}>
         <Login />
@@ -70,7 +70,7 @@ const router = createBrowserRouter([
     </>,
   },
   {
-    path: "/forgot-password",
+    path: `${import.meta.env.VITE_BASE}/forgot-password`,
     element: <>
       <Suspense fallback={<Loader />}>
         <ForgotPassword />
@@ -78,7 +78,7 @@ const router = createBrowserRouter([
     </>,
   },
   {
-    path: "/reset-password/:uid/:token",
+    path: `${import.meta.env.VITE_BASE}/reset-password/:uid/:token`,
     element:  <>
     <Suspense fallback={<Loader />}>
       <ResetPassword  />
@@ -86,7 +86,7 @@ const router = createBrowserRouter([
   </>,
   },
   {
-    path: "/admin",
+    path: `${import.meta.env.VITE_BASE}/admin`,
     element:
 
       <Admin />
@@ -96,11 +96,11 @@ const router = createBrowserRouter([
 
     children: [
       {
-        path: "/admin",
-        element: <Navigate to="/admin/home" />,
+        path: `${import.meta.env.VITE_BASE}/admin`,
+        element: <Navigate to={`${import.meta.env.VITE_BASE}/admin/home`} />,
       },
       {
-        path: "/admin/profile",
+        path: `${import.meta.env.VITE_BASE}/admin/profile`,
         element: <>
           <Suspense fallback={<Loader />}>
             <AdminProfileMainContainer />
@@ -108,7 +108,7 @@ const router = createBrowserRouter([
         </>,
       },
       {
-        path: "/admin/home",
+        path: `${import.meta.env.VITE_BASE}/admin/home`,
         element: <>
           <Suspense fallback={<Loader />}>
             <Dashboard />
@@ -116,7 +116,7 @@ const router = createBrowserRouter([
         </>,
       },
       {
-        path: "/admin/employee",
+        path: `${import.meta.env.VITE_BASE}/admin/employee`,
         element: <>
           <Suspense fallback={<Loader />}>
             <Employees />
@@ -124,7 +124,7 @@ const router = createBrowserRouter([
         </>,
       },
       {
-        path: "/admin/departments",
+        path: `${import.meta.env.VITE_BASE}/admin/departments`,
         element: <>
           <Suspense fallback={<Loader />}>
             <Department />
@@ -132,7 +132,7 @@ const router = createBrowserRouter([
         </>,
       },
       {
-        path: "/admin/holidays",
+        path: `${import.meta.env.VITE_BASE}/admin/holidays`,
         element: <>
           <Suspense fallback={<Loader />}>
             <Holidays />
@@ -140,7 +140,7 @@ const router = createBrowserRouter([
         </>,
       },
       {
-        path: "/admin/report",
+        path: `${import.meta.env.VITE_BASE}/admin/report`,
         element: <>
           <Suspense fallback={<Loader />}>
             <AttendanceReport />
@@ -154,17 +154,17 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: "/user",
+    path: `${import.meta.env.VITE_BASE}/user`,
     element:
       <User />
     ,
     children: [
       {
-        path: "/user",
-        element: <Navigate to="/user/home" />,
+        path: `${import.meta.env.VITE_BASE}/user`,
+        element: <Navigate to={`${import.meta.env.VITE_BASE}/user/home`} />,
       },
       {
-        path: "/user/home",
+        path: `${import.meta.env.VITE_BASE}/user/home`,
         element: <>
           <Suspense fallback={<Loader />}>
             <UserDashboard />
@@ -172,7 +172,7 @@ const router = createBrowserRouter([
         </>,
       },
       {
-        path: "/user/profile",
+        path: `${import.meta.env.VITE_BASE}/user/profile`,
         element: <>
           <Suspense fallback={<Loader />}>
             <UserProfile />
@@ -180,7 +180,7 @@ const router = createBrowserRouter([
         </>,
       },
       {
-        path: "/user/employee-status",
+        path: `${import.meta.env.VITE_BASE}/user/employee-status`,
         element: <>
           <Suspense fallback={<Loader />}>
             <UserEmployeeStatus />
@@ -188,7 +188,7 @@ const router = createBrowserRouter([
         </>,
       },
       {
-        path: "/user/attendance-record",
+        path: `${import.meta.env.VITE_BASE}/user/attendance-record`,
         element: <>
           <Suspense fallback={<Loader />}>
             <UserAttendanceRecord />

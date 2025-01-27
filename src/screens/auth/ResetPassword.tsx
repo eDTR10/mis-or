@@ -213,7 +213,7 @@ const ResetPassword = () => {
  
 
     <Button className={show?"flex":"hidden"}>
-    <Link id="step1" to="/">
+    <Link id="step1" to={`${import.meta.env.VITE_BASE}`}>
     Sign In
         </Link>
  

@@ -50,12 +50,12 @@ function Profile() {
       setSelectedAccountType(0);
       // const updatedUser = { ...user, access_lvl: 0 };
       // localStorage.setItem("user", JSON.stringify(updatedUser));
-      navigate("/user");
+      navigate(`${import.meta.env.VITE_BASE}/user`);
     } else {
       setSelectedAccountType(14);
       // const updatedUser = { ...user, access_lvl: 14 };
       // localStorage.setItem("user", JSON.stringify(updatedUser));
-      navigate("/admin");
+      navigate(`${import.meta.env.VITE_BASE}/admin`);
     }
 
     console.log(selectedAccountType);
@@ -64,7 +64,7 @@ function Profile() {
     // setSelectedAccountType(newType);
     // const updatedUser = { ...user, access_lvl: newType };
     // localStorage.setItem("user", JSON.stringify(updatedUser));
-    // navigate(newType === 14 ? "/user" : "/admin");
+    // navigate(newType === 14 ? "${import.meta.env.VITE_BASE}/user" : "${import.meta.env.VITE_BASE}/admin");
   }
 
   return (
@@ -104,9 +104,9 @@ function Profile() {
           <div
             onClick={() => {
               if (user.access_lvl === 0) {
-                navigate("/user/profile");
+                navigate(`${import.meta.env.VITE_BASE}/user/profile`);
               } else {
-                navigate("/admin/profile");
+                navigate(`${import.meta.env.VITE_BASE}/admin/profile`);
               }
             }}
             className=" flex items-center gap-2 text-foreground cursor-pointer"
@@ -119,7 +119,7 @@ function Profile() {
           <div
             onClick={() => {
               localStorage.clear();
-              navigate("/");
+              navigate(`${import.meta.env.VITE_BASE}`);
             }}
             className=" flex items-center gap-2 text-red-600 cursor-pointer"
           >

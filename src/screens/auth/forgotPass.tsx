@@ -22,7 +22,7 @@ function ForgotPassword() {
 
     useEffect(() => {
         if (localStorage.getItem("accessToken")) {
-            navigate('/admin/home');
+            navigate(`${import.meta.env.VITE_BASE}/admin/home`);
         }
     }, []);
 
@@ -81,7 +81,7 @@ function ForgotPassword() {
                                 onChange={(e: any) => setUser({ ...user, email: e.target.value })}
                                 type="email"
                             />
-                            <Link to="/login" className='text-foreground font-semibold text-sm cursor-pointer self-end pt-2 pb-6 hover:underline'>Already remember it? Back to Login</Link>
+                            <Link to={`${import.meta.env.VITE_BASE}/login`} className='text-foreground font-semibold text-sm cursor-pointer self-end pt-2 pb-6 hover:underline'>Already remember it? Back to Login</Link>
 
                             <button
                                 className="btn-donate"

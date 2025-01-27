@@ -13,21 +13,23 @@ import Swal from 'sweetalert2'
 import axios from '../../plugin/axios'
 import { Link, useNavigate } from "react-router-dom";
 import { EyeIcon, EyeOffIcon } from 'lucide-react'
+import { Loader2 } from 'lucide-react'
+
 function Login() {
     const [showPassword, setShowPassword] = useState(false);
-
+    const [isLoading, setIsLoading] = useState(false);
 
     const navigate = useNavigate()
     const [user, setUser] = useState({
         email: "", password: ""
     })
     useEffect(() => {
-        localStorage.getItem("accessToken") ? navigate('/admin/home') : ""
+        localStorage.getItem("accessToken") ? navigate(`${import.meta.env.VITE_BASE}/admin/home`) : ""
     }, [])
 
-    useEffect(() => {
-        console.log("asdasd", import.meta.env.VITE_URL)
-    }, [])
+    // useEffect(() => {
+    //     console.log("asdasd", import.meta.env.VITE_URL)
+    // }, [])
 
 
 
@@ -59,59 +61,60 @@ function Login() {
 
                     <form className='animate__animated animate__fadeInUp mb-10 z-10 w-full sm:w-[95%] sm:mx-4 max-w-[450px] flex flex-col items-center  min-h-[100px] py-10 px-6 rounded-md bg-card border-2 border-border' onSubmit={(e: any) => {
                         e.preventDefault()
+                        setIsLoading(true)
 
+                        // Create a timeout promise
+                        const timeoutPromise = new Promise((_, reject) =>
+                            setTimeout(() => reject(new Error('Server timeout')), 5000)
+                        );
 
-                        axios.post('token/login/', user).then((e: any) => {
-
+                        // Race between the API call and timeout
+                        Promise.race([
+                            axios.post('token/login/', user),
+                            timeoutPromise
+                        ]).then((e: any) => {
                             if (e.data.auth_token) {
                                 localStorage.setItem("accessToken", e.data.auth_token)
-                                console.log(e.data.auth_token)
-                                axios.get('users/me/', {
+                                return axios.get('users/me/', {
                                     headers: {
                                         Authorization: `Token ${e.data.auth_token}`,
                                     },
-                                }).then((z: any) => {
-                                    console.log(z.data)
-                                    console.log(z)
-                                    Swal.fire({
-                                        icon: "success",
-                                        title: "Login Successfully...",
-                                        showConfirmButton: false,
-                                        timer: 2000
-                                    });
-                                    localStorage.setItem("user", JSON.stringify(z.data))
-                                    console.log(z.data)
-                                    console.log(z.data.access_lvl)
-                                    if (z.data.access_lvl === 14) {
-                                        navigate('/admin')
-                                    }
-                                    else {
-                                        navigate('/user')
-                                    }
-
-
-
                                 })
                             }
+                        }).then((z: any) => {
+                            if (z) {
+                                Swal.fire({
+                                    icon: "success",
+                                    title: "Login Successfully...",
+                                    showConfirmButton: false,
+                                    timer: 2000
+                                });
+                                localStorage.setItem("user", JSON.stringify(z.data))
+                                if (z.data.access_lvl === 14) {
+                                    navigate(`${import.meta.env.VITE_BASE}/admin`)
+                                } else {
+                                    navigate(`${import.meta.env.VITE_BASE}/user`)
+                                }
+                            }
                         }).catch((error: any) => {
-
-                            console.log(error.response.data.non_field_errors[0])
-
-                            Swal.fire({
-                                icon: "error",
-                                title: "Oops...",
-                                text: error.response.data.non_field_errors[0],
-                                showConfirmButton: false,
-
-                            });
-
+                            if (error.message === 'Server timeout') {
+                                Swal.fire({
+                                    icon: "warning",
+                                    title: "Server Not Responding",
+                                    text: "The server is taking too long to respond. Please try again later.",
+                                    showConfirmButton: true,
+                                });
+                            } else {
+                                Swal.fire({
+                                    icon: "error",
+                                    title: "Oops...",
+                                    text: error.response?.data?.non_field_errors?.[0] || "An error occurred",
+                                    showConfirmButton: false,
+                                });
+                            }
+                        }).finally(() => {
+                            setIsLoading(false)
                         })
-
-
-
-
-
-
                     }} >
                         <div className=' w-[95%] h-16 flex '>
                             <h1 className=' text-foreground text-3xl font-bold'>SIGN IN</h1>
@@ -146,9 +149,21 @@ function Login() {
                                     {!showPassword ? <EyeOffIcon className=' w-5 h-5' /> : <EyeIcon className=' w-5 h-5'  />}
                                 </button>
                             </div>
-                            <Link to='/forgot-password' className='text-foreground font-semibold text-sm cursor-pointer self-end pt-2 pb-6 hover:underline'>Forgot password?</Link>
+                            <Link to={`${import.meta.env.VITE_BASE}/forgot-password`} className='text-foreground font-semibold text-sm cursor-pointer self-end pt-2 pb-6 hover:underline'>Forgot password?</Link>
 
-                            <button className="btn-donate">Sign In</button>
+                            <button 
+                                disabled={isLoading} 
+                                className={`btn-donate flex items-center justify-center gap-2 ${isLoading ? 'opacity-70 cursor-not-allowed' : ''}`}
+                            >
+                                {isLoading ? (
+                                    <>
+                                        <Loader2 className="h-4 w-4 animate-spin" />
+                                        Signing In...
+                                    </>
+                                ) : (
+                                    'Sign In'
+                                )}
+                            </button>
 
                         </div>
 

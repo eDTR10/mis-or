@@ -14,7 +14,7 @@ import { useState } from "react";
 import Profile from "@/components/profile/Profile";
 
 import { useNavigate, } from "react-router-dom";
-import DashboardAnalogClock from "./dashboard/dashboard-body/DashboardAnalogClock";
+// import DashboardAnalogClock from "./dashboard/dashboard-body/DashboardAnalogClock";
 function Admin() {
   const navigate = useNavigate()
   const [show, setShow] = useState(false)
@@ -43,7 +43,7 @@ function Admin() {
             <ArrowLeftIcon className=" text-white " />
           </div>
           <div className=" flex h-full flex-col gap-10">
-            <Link className=" rounded-md flex  justify-center w-full " to="/admin " >
+            <Link className=" rounded-md flex  justify-center w-full " to={`${import.meta.env.VITE_BASE}/admin`} >
               <div className=" flex mr-4 flex-col gap-7 justify-center">
                 <div className=" bg-white rounded-md  ">
                   <img src={viteLogo} className="logo w-36  object-contain  " alt="Vite logo" />
@@ -56,18 +56,18 @@ function Admin() {
             <nav className=" flex flex-col  pl-10 h-[40%] justify-between mt-10  ">
               <div className=" text-accent-foreground flex flex-col  gap-5">
                 <NavLink
-                  to="/admin/home"
+                  to={`${import.meta.env.VITE_BASE}/admin/home`}
                   text="Dashboard"
                   icon={<ListChecksIcon className="w-5 h-5 " />}
                 />
 
                 <NavLink
-                  to="/admin/employee"
+                  to={`${import.meta.env.VITE_BASE}/admin/employee`}
                   text="Employee"
                   icon={<UsersIcon className="w-5 h-5 " />}
                 />
                 <NavLink
-                  to="/admin/departments"
+                  to={`${import.meta.env.VITE_BASE}/admin/departments`}
                   text="Department"
                   icon={<Building2Icon className=" w-5 h-5 " />}
                 />
@@ -77,12 +77,12 @@ function Admin() {
 
               <div className=" text-accent-foreground flex flex-col gap-5">
                 <NavLink
-                  to="/admin/holidays"
+                  to={`${import.meta.env.VITE_BASE}/admin/holidays`}
                   text="Holidays"
                   icon={<CakeIcon className=" w-5 h-5 " />}
                 />
                 <NavLink
-                  to="/admin/report"
+                  to={`${import.meta.env.VITE_BASE}/admin/report`}
                   text="Attendance report"
                   icon={<ClipboardListIcon className=" w-5 h-5 " />}
                 />
@@ -101,7 +101,7 @@ function Admin() {
             <div onClick={() => {
 
               localStorage.clear()
-              navigate('/')
+              navigate(`${import.meta.env.VITE_BASE}`)
             }} className=" cursor-pointer flex gap-3 items-center justify-center bg-[#ff0000] hover:bg-red-600/80 w-[150px] h-10 rounded-sm">
               <p >Log Out</p>
               <LogOutIcon className=" w-5 h-5 " />

@@ -42,7 +42,7 @@ function User() {
                         <ArrowLeftIcon className=" text-white " />
                     </div>
                     <div className=" flex h-full flex-col gap-10">
-                        <Link className=" rounded-md flex  justify-center w-full " to="/user " >
+                        <Link className=" rounded-md flex  justify-center w-full " to="${import.meta.env.VITE_BASE}/user " >
                             <div className=" flex mr-4 flex-col gap-7 justify-center">
                                 <div className=" bg-white rounded-md  ">
                                     <img src={viteLogo} className="logo w-36  object-contain  " alt="Vite logo" />
@@ -55,17 +55,17 @@ function User() {
                         <nav className=" flex flex-col  pl-10 h-[40%] justify-between mt-10  ">
                             <div className=" text-accent-foreground flex flex-col  gap-5">
                                 <NavLink
-                                    to="/user/home"
+                                    to={`${import.meta.env.VITE_BASE}/user/home`}
                                     text="Dashboard"
                                     icon={<ListChecksIcon className="w-5 h-5 " />}
                                 />
                                 <NavLink
-                                    to="/user/employee-status"
+                                    to={`${import.meta.env.VITE_BASE}/user/employee-status`}
                                     text="User Activity"
                                     icon={<Building2Icon className=" w-5 h-5 " />}
                                 />
                                 <NavLink
-                                    to="/user/attendance-record"
+                                    to={`${import.meta.env.VITE_BASE}/user/attendance-record`}
                                     text="Attendance Record"
                                     icon={<Building2Icon className=" w-5 h-5 " />}
                                 />
@@ -76,17 +76,17 @@ function User() {
                             <div className=" text-accent-foreground flex flex-col gap-5">
 
                                 {/* <NavLink
-                                    to="/user/profile"
+                                    to="${import.meta.env.VITE_BASE}/user/profile"
                                     text="Profile"
                                     icon={<UsersIcon className="w-5 h-5 " />}
                                 /> */}
                                 {/* <NavLink
-                                    to="/user/employee-status"
+                                    to="${import.meta.env.VITE_BASE}/user/employee-status"
                                     text="Employee Status"
                                     icon={<Building2Icon className=" w-5 h-5 " />}
                                 />
                                 <NavLink
-                                    to="/user/attendance-record"
+                                    to="${import.meta.env.VITE_BASE}/user/attendance-record"
                                     text="Attendance Record"
                                     icon={<Building2Icon className=" w-5 h-5 " />}
                                 /> */}
@@ -105,8 +105,9 @@ function User() {
                     <div className="  pl-10 text-white">
                         <div onClick={() => {
 
+                            
+                            navigate(`${import.meta.env.VITE_BASE}`)
                             localStorage.clear()
-                            navigate('/')
                         }} className=" cursor-pointer flex gap-3 items-center justify-center bg-[#ff0000] hover:bg-red-600/80 w-[150px] h-10 rounded-sm">
                             <p >Log Out</p>
                             <LogOutIcon className=" w-5 h-5 " />
