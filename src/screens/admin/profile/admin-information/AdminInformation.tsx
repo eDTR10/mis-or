@@ -1,5 +1,5 @@
-import React from 'react';
-import { Plane, Briefcase, Home, Globe, User, Car, Building2 } from 'lucide-react';
+
+import { Plane,  Home, Globe, Car, Building2 } from 'lucide-react';
 import { Avatar, AvatarImage } from '@radix-ui/react-avatar';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
@@ -26,12 +26,11 @@ const getStatusDetails = (status: number) => {
 
 
 const AdminInformation = (profileData: any) => {
-    const userJson = localStorage.getItem("user");
-    const userObject = userJson ? JSON.parse(userJson) : null;
+  
     const data = profileData.profileData;
 
     const fullName = data?.full_name;
-    const email = data?.email;
+
     const status = data?.status ? data.status : 0;
     const statusDetails = getStatusDetails(status);
 
@@ -54,7 +53,7 @@ const AdminInformation = (profileData: any) => {
                 <div className="grid grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-4 mt-6">
                     <div className="flex flex-col col-span-2 md:col-span-1 sm:grid-cols-1">
                         <p className="text-md text-foreground">Fullname</p>
-                        <Input placeholder='Fullname' title='Fullname' disabled value={data?.full_name ? data?.full_name : 'N/A'} className='text-md text-foreground text-foreground' />
+                        <Input placeholder='Fullname' title='Fullname' disabled value={data?.full_name ? data?.full_name : 'N/A'} className='text-md text-foreground ' />
                     </div>
                     <div className="flex flex-col sm:grid-cols-1 xs:col-span-1">
                         <p className="text-md text-foreground">Email</p>

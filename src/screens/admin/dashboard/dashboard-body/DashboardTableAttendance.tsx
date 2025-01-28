@@ -22,7 +22,7 @@ const DashboardTableAttendance = () => {
         // console.log(localStorage.getItem("accessToken"));
         const fetchData = async () => {
             try {
-                const response = await axios.get('checkinout/today/', {
+                const response = await axios.get(`${import.meta.env.VITE_POINT}/today/`, {
                     headers: {
                         Authorization: `Token ${localStorage.getItem("accessToken")}`,
                     },

@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import { Airplay, Car, Delete, PlusIcon, PlusSquareIcon, Search, Sheet, Trash, Trash2 } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import {  Car, PlusSquareIcon, Search,Trash2 } from 'lucide-react';
 import axios from '../../../../plugin/axios';
 import Swal from 'sweetalert2';
-import { useNavigate } from 'react-router-dom';
+
 import { Dialog, DialogContent, DialogTitle, DialogDescription, DialogFooter } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
@@ -11,19 +11,19 @@ import { Table, TableHeader, TableRow, TableHead, TableBody, TableCell } from '@
 import { convertDate } from '@/helper/date-time';
 import { convertStatus } from '@/helper/convert-status';
 import InputText2 from '@/components/input/InputText2';
-import { Textarea } from '@/components/ui/textarea';
+
 
 const HolidayTable = () => {
-    const navigate = useNavigate();
+
     const [searchTerm, setSearchTerm] = useState('');
-    const [filterType, setFilterType] = useState('All');
+    const [filterType, _setFilterType] = useState('All');
     const [data, setData] = useState([]);
 
     const [isAddActivityDialogOpen, setIsAddActivityDialogOpen] = useState(false);
     const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
     const [activityToDelete, setActivityToDelete] = useState<any>(null);
-    const [employeeName, setEmployeeName] = useState('');
-    const [activity, setActivity] = useState('');
+    const [_employeeName, _setEmployeeName] = useState('');
+    const [_activity, setActivity] = useState('');
     const [period, setPeriod] = useState('')
     const [fromDate, setFromDate] = useState('');
     const [toDate, setToDate] = useState('');
@@ -32,21 +32,11 @@ const HolidayTable = () => {
     const userJson = localStorage.getItem("user");
     const userObject = userJson ? JSON.parse(userJson) : null;
 
-    const handleAddActivity = () => {
-        // Handle the add activity logic here
-        console.log({
-            employeeName,
-            activity,
-            fromDate,
-            toDate,
-            description
-        });
-        setIsAddActivityDialogOpen(false);
-    };
+   
 
     const addActivity = async () => {
         try {
-            const response = await axios.post('holiday/', {
+            await axios.post('holiday/', {
                 USERID: userObject?.uid,
                 fromDate: fromDate,
                 toDate: toDate,
@@ -84,7 +74,7 @@ const HolidayTable = () => {
     console.log(activityToDelete)
     const deleteActivity = async () => {
         try {
-            const response = await axios.delete(`holiday/delete/${activityToDelete.holiday_id}/`, {
+             await axios.delete(`holiday/delete/${activityToDelete.holiday_id}/`, {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `Token ${localStorage.getItem("accessToken")}`,

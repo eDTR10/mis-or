@@ -42,7 +42,7 @@ function User() {
                         <ArrowLeftIcon className=" text-white " />
                     </div>
                     <div className=" flex h-full flex-col gap-10">
-                        <Link className=" rounded-md flex  justify-center w-full " to="${import.meta.env.VITE_BASE}/user " >
+                        <Link className=" rounded-md flex  justify-center w-full " to={`${import.meta.env.VITE_BASE}/user`}>
                             <div className=" flex mr-4 flex-col gap-7 justify-center">
                                 <div className=" bg-white rounded-md  ">
                                     <img src={viteLogo} className="logo w-36  object-contain  " alt="Vite logo" />

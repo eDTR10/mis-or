@@ -45,7 +45,7 @@ function ReportTable() {
 
   function getAttendace() {
     setLoading(true)
-          axios.get('checkinout/by_user/',{
+          axios.get(`${import.meta.env.VITE_POINT}/by_user/`,{
               headers: {
                 Authorization: `Token ${localStorage.getItem('accessToken')}`,
               }, 
@@ -56,7 +56,7 @@ function ReportTable() {
   }
 
   function getAttendaceCon() {
-      axios.post('checkinout/user_filter_by_user_date/',{
+      axios.post(`${import.meta.env.VITE_POINT}/user_filter_by_user_date/`,{
           "fromDate": inputData.fromDate,
           "toDate": inputData.toDate
         }

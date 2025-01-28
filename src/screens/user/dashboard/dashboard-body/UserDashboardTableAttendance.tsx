@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
     Table,
     TableBody,
@@ -10,12 +10,12 @@ import {
 import { Search, Sheet } from 'lucide-react';
 import axios from '../../../../plugin/axios';
 import Swal from 'sweetalert2';
-import { useNavigate } from 'react-router-dom';
+
 import { convertCheckType } from '@/helper/check-type';
 import { convertDate } from '@/helper/date-time';
 
 const UserDashboardTableAttendance = () => {
-    const navigate = useNavigate();
+
     const [searchTerm, setSearchTerm] = useState('');
     const [filterType, setFilterType] = useState('All');
     const [data, setData] = useState([]);
@@ -24,7 +24,7 @@ const UserDashboardTableAttendance = () => {
         // console.log(localStorage.getItem("accessToken"));
         const fetchData = async () => {
             try {
-                const response = await axios.get('checkinout/today/', {
+                const response = await axios.get(`${import.meta.env.VITE_POINT}/today/`, {
                     headers: {
                         Authorization: `Token ${localStorage.getItem("accessToken")}`,
                     },

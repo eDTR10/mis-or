@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ArrowRight, Plane, Building2, Car, Globe, EyeOff, Eye, UploadIcon, Home } from 'lucide-react';
+import { ArrowRight, Plane, Building2, Car, Globe, EyeOff, Eye,  Home } from 'lucide-react';
 import { Avatar, AvatarImage } from '@radix-ui/react-avatar';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
@@ -30,8 +30,8 @@ const getStatusDetails = (status: number,) => {
 };
 
 const AdminUpdateInformation = (profileData: any, onPhotoUpdate: any) => {
-    const userJson = localStorage.getItem("user");
-    const userObject = userJson ? JSON.parse(userJson) : null;
+
+  
 
     const data = profileData?.profileData;
 
@@ -122,7 +122,7 @@ const AdminUpdateInformation = (profileData: any, onPhotoUpdate: any) => {
 
 
         try {
-            const response = await axios.put('users/user_update/', {
+             await axios.put('users/user_update/', {
                 "password": newPassword,
             }, {
                 headers: {
@@ -189,12 +189,7 @@ const AdminUpdateInformation = (profileData: any, onPhotoUpdate: any) => {
         <div>
             <div className='flex flex-col w-full items-center p-8 bg-primary-foreground border border-border'>
                 <Avatar className=" relative">
-                    <div className=" absolute flex items-center justify-center z-20 w-full h-full">
-                        <UploadIcon
-                            className=" text-foreground animate-bounce"
-                            onClick={() => setIsProfilePhotoModalOpen(true)}
-                        />
-                    </div>
+                    
                     <AvatarImage
                         src={
                             photo

@@ -1,5 +1,5 @@
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { Button } from "@/components/ui/button";
+
 import { useEffect, useState } from "react";
 import axios from '../../../plugin/axios';
 import ViewButton from "./ViewButton";
@@ -45,31 +45,14 @@ function EmployeeTable() {
         
     }, []);
 
-    function getNextAttendace(url:any) {
-        axios.get(`${url}`,{
-            headers: {
-              Authorization: `Token ${localStorage.getItem('accessToken')}`,
-            }, 
-          }).then((e)=>{
-            setEmployees(e.data)
-          })
-}
+
 
     
 
-    function removeBaseUrl(fullUrl: string): string {
-        const baseUrl = "http://192.168.68.105:8000/api/v1/";
-        if (fullUrl.startsWith(baseUrl)) {
-            return fullUrl.replace(baseUrl, "");
-        }
-        return fullUrl;
-    }
+  
 
     
 
-    function getNextAttendace2(url:any) {
-        console.log(url)
-    }
 
     const filteredEmployee = employees? 
     employees.filter((employee: any) => {
