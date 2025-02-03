@@ -65,11 +65,11 @@ const MyDocument = ({ name, date, data,selectedYear, selectedMonth,previewUrl }:
 const renderCheckinText = (data:any) => {
   switch (data.length) {
     case 4:
-      return data[0];
+      return data[3];
     case 3:
-      return data[0];
+      return data[2];
     case 2:
-      return data[0];
+      return data[1];
     case 1:
       return data[0];
     default:
