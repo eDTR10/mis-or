@@ -77,6 +77,9 @@ const renderCheckinText = (data:any) => {
       return '';
   }
 };
+
+
+
 const renderCheckOutText = (data:any) => {
   
   switch (data.length) {
@@ -334,10 +337,10 @@ const activities = activitiesByDate[day] || [];
 
 
         <View style={{ width: '10%', borderRight: 0.5, alignItems: 'center', paddingLeft: 2, height: '100%', justifyContent: 'center', textAlign: 'center' }}>
-          <Text style={{ textAlign: 'center', marginTop: 2 }}>0</Text>
+          <Text style={{ textAlign: 'center', marginTop: 2 }}></Text>
         </View>
         <View style={{ width: '10%', paddingLeft: 2, height: '100%', alignItems: 'center', justifyContent: 'center', textAlign: 'center' }}>
-          <Text style={{ textAlign: 'center', marginTop: 2 }}>0</Text>
+          <Text style={{ textAlign: 'center', marginTop: 2 }}></Text>
         </View>
       </View>
     );
@@ -360,10 +363,10 @@ const activities = activitiesByDate[day] || [];
                       <Text style={{ textAlign: 'center', marginTop: 2 }}>{renderCheckOutText(checkoutTimes)}</Text>
                     </View>
                     <View style={{ width: '10%', borderRight: 0.5, alignItems: 'center', paddingLeft: 2, height: '100%', justifyContent: 'center', textAlign: 'center' }}>
-                      <Text style={{ textAlign: 'center', marginTop: 2 }}>0</Text>
+                      <Text style={{ textAlign: 'center', marginTop: 2 }}></Text>
                     </View>
                     <View style={{ width: '10%', paddingLeft: 2, height: '100%', alignItems: 'center', justifyContent: 'center', textAlign: 'center' }}>
-                      <Text style={{ textAlign: 'center', marginTop: 2 }}>0</Text>
+                      <Text style={{ textAlign: 'center', marginTop: 2 }}></Text>
                     </View>
                   </View>
                 )
@@ -395,7 +398,7 @@ const activities = activitiesByDate[day] || [];
               />
            
           )}
-              <Text style={{ borderBottom: 0.5, paddingTop: 2 ,fontStyle:'bold' }}>{name.toUpperCase()}</Text>
+              <Text style={{ borderBottom: 0.5, paddingTop: 2 ,fontStyle:'bold' }}>{name}</Text>
             </View>
 
             <Text style={{ fontSize: 7, marginTop: 10, textAlign: 'justify' }}>
@@ -403,7 +406,8 @@ const activities = activitiesByDate[day] || [];
             </Text>
 
             <View style={{ fontSize: 8, textAlign: 'center', marginTop: 30 }}>
-              <Text style={{ borderBottom: 0.5, paddingTop: 2,fontStyle:'bold' }}>NIDELIZA FE O. NACILLA</Text>
+          
+              <Text style={{ borderBottom: 0.5, paddingTop: 2,fontStyle:'bold' }}>{name == "NIDELIZA FE O. NACILLA"?"Engr. EUGENE C. RAPOSALA, III":"NIDELIZA FE O. NACILLA"}</Text>
               <Text style={{ fontSize: 7 ,fontStyle:'italic',marginTop:2}}>Name and Signature of Immediate Supervisor</Text>
             </View>
 
